@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getAllProduct } from "../state/selectors/ProductSelector";
+import { Header } from "./Header";
 import "./home.css";
 import { ProductList } from "./ProductList";
 export const Home = ()=>{
@@ -14,7 +15,7 @@ export const Home = ()=>{
    
     return(
         <div>
-         <header className="heading">This is header: {productsQty}</header>
+         <Header/>
          {products && products.map((items)=>(
              <ProductList currentitem={items}/>
          ))}

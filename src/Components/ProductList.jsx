@@ -12,8 +12,6 @@ export const ProductList=({currentitem}) =>{
     dispatch({type:"ADD_PRODUCT", item:productsQty+1})
 }
   
-       
-
       return (
      <div className="card-data">
           <Row>

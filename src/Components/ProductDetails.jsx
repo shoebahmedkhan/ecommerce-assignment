@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import * as QueryString from "query-string"
 import {Row,Col,Image, Container, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
+import { Header } from './Header';
 
 export const ProductDetails=()=> {
     const [selectedProduct, setSelectedProduct]=useState();
@@ -20,35 +21,32 @@ export const ProductDetails=()=> {
         
     },[params.productId, products])
     return (
-        <Container>
-            <Row><h2>Product Details</h2></Row>
-             <Row>
-                 {selectedProduct && selectedProduct.map(item=>(
+        <>
+           
+            {selectedProduct && selectedProduct.map(item=>(
                      <React.Fragment>
-                         <Col>
-                         <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
-                         </Col>
-                        <Col >
-                        <Image src={item.image} />
-                      </Col>
-                      <Col>
-                        <p>
-                            {item.name}
-                        </p>
+                          <Header/>
+                         <div className="Details-content">
+                         <img src={item.image}className="Product-image" />
+                         
+                         <div className="Description">
+                             <h2>{item.name}</h2>
+                             <p>{item.desc}</p>
+                             <p><small>&#8377;</small>
+                              <strong>{item.price}</strong>
+                              </p>
+                              <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
+                         </div>
                       
-                      </Col>
-                      <Col>
-                        <p>
-                            {item.price}
-                        </p>
                       
-                      </Col>
+                    
+                      </div>
                       </React.Fragment>
                  )
                  )}
+                
                  
                  
-                 </Row>
-        </Container>
+        </>
     )
 }
