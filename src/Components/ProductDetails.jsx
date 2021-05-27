@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./productDetails.css"
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import * as QueryString from "query-string"
-import {Row,Col,Image, Container, Button} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './Header';
 
@@ -13,8 +13,9 @@ export const ProductDetails=()=> {
     const Substracting = ()=> addQuantity >0 && setAddQuantity(addQuantity-1);
     const params = QueryString.parse(useLocation().search);
     const dispatch= useDispatch();
+    const history = useHistory();
 
-    const {products, productsQty} = useSelector(state=>state.ProductReducer);
+        const {products, productsQty} = useSelector(state=>state.ProductReducer);
     const handleAddToCart=()=>{
         dispatch({type:"ADD_PRODUCT", item:productsQty+1})
     }
@@ -45,17 +46,17 @@ export const ProductDetails=()=> {
                                   <button onClick={adding}>+</button>
                               </p>
                               </div>
-                              <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
+                              <Button variant="dark" onClick={handleAddToCart}>Add to Cart</Button><p>
+
+                              </p>
+                              <Button variant="dark" onClick={e=>history.push('/')}>Back To Home</Button>
                          </div>
                       
-                      
-                    
                       </div>
                       </React.Fragment>
                  )
                  )}
-                
-                 
+         
                  
         </>
     )

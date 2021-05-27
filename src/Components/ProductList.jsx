@@ -25,7 +25,7 @@ export const ProductList=({currentitem}) =>{
             <small>&#8377;</small>
             <strong>{currentitem.price}</strong>
         </p>
-        <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
+        <Button variant="dark" onClick={handleAddToCart}>Add to Cart</Button>
   </Card.Body>
 </Card>
 </Row>
