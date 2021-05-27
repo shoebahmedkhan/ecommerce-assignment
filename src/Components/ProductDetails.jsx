@@ -8,6 +8,9 @@ import { Header } from './Header';
 
 export const ProductDetails=()=> {
     const [selectedProduct, setSelectedProduct]=useState();
+    const [addQuantity , setAddQuantity]=useState(0)
+    const adding = ()=> setAddQuantity(addQuantity+1);
+    const Substracting = ()=> addQuantity >0 && setAddQuantity(addQuantity-1);
     const params = QueryString.parse(useLocation().search);
     const dispatch= useDispatch();
 
@@ -35,6 +38,13 @@ export const ProductDetails=()=> {
                              <p><small>&#8377;</small>
                               <strong>{item.price}</strong>
                               </p>
+                              <div className="quantity">
+                              <p>
+                                  <button onClick={Substracting}>-</button>
+                                  <input type="textbox" style={{width:"20px"}} value={addQuantity}/>
+                                  <button onClick={adding}>+</button>
+                              </p>
+                              </div>
                               <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
                          </div>
                       
