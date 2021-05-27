@@ -6,15 +6,15 @@ import { ProductList } from "./ProductList";
 export const Home = ()=>{
     const [products,setProducts]=useState();
     const selector = useSelector(getAllProduct);
-    console.log("checking===>",selector)
-
+    
+  const {productsQty} = useSelector(state=>state.ProductReducer);
     useEffect(()=>{
         setProducts(selector)
     },[selector])
    
     return(
         <div>
-         <header className="heading">this is header</header>
+         <header className="heading">This is header: {productsQty}</header>
          {products && products.map((items)=>(
              <ProductList currentitem={items}/>
          ))}

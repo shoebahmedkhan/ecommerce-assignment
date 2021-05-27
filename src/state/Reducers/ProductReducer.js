@@ -116,7 +116,7 @@ products :[{
     price : 5000,
     id : 10
 }],
-// product : []
+productsQty:0,
 }
 
 const ProductReducer = (state= initialState,action)=>{
@@ -124,6 +124,10 @@ const ProductReducer = (state= initialState,action)=>{
         case "SET_PRODUCT":
             return{
                 ...state, products:[...state.products,action.item]
+            }
+        case "ADD_PRODUCT":
+            return{
+                ...state, productsQty:action.item
             }
             default:
                 return state;

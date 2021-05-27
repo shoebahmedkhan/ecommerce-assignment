@@ -1,42 +1,36 @@
 import React from 'react'
 import { Card, Container ,Button,Row} from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
 import "./productlist.css"
 
 export const ProductList=({currentitem}) =>{
-    return (
+  const {productsQty} = useSelector(state=>state.ProductReducer);
+  const dispatch = useDispatch();
+
+  const handleAddToCart=()=>{
+    dispatch({type:"ADD_PRODUCT", item:productsQty+1})
+}
+  
+       
+
+      return (
      <div className="card-data">
           <Row>
           <Card className="main-content">
+              <Link to={`productDetails?productId=${currentitem.id}`}>
   <Card.Img className="product-image" src={currentitem.image}/>
+     </Link>
   <Card.Body className="content">
     <Card.Title>{currentitem.name}</Card.Title>
-    <p>{currentitem.price}</p>
-    {/* <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text> */}
-    <Button variant="primary">View Details</Button>
+        <p>
+            <small>&#8377;</small>
+            <strong>{currentitem.price}</strong>
+        </p>
+        <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
   </Card.Body>
 </Card>
 </Row>
- {/* <Card bg="primary" text="white" style={{ width: '30rem',height:'40rem'}}>
-          <div className="Cards">
-            <div className="Card">
-                <div className="card_info">
-                    <p>{currentitem.name}</p>
-                    <p className="card_price">
-                        <small>&#8377;</small>
-                        <strong>{currentitem.price}</strong>
-                    </p>
-                   
-
-                </div>
-                <img src={currentitem.image} alt=""/>
-                <button>Add To Cart</button>
-            </div>
-        </div>
-  
-  </Card> */}
       </div>
     )
 }
