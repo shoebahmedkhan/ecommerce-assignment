@@ -8,7 +8,7 @@ export const  Header=()=> {
     return (
         <div>
             <header className="heading">
-            This is header:
+            <h2>i-Connect Shopping Cart </h2>
                 <div>
                     <h3>{productsQty}</h3>
                     < ShoppingCartIcon className="Cart-icon"/>
