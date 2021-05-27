@@ -5,7 +5,6 @@ import * as QueryString from "query-string"
 import {Button} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from './Header';
-
 export const ProductDetails=()=> {
     const [selectedProduct, setSelectedProduct]=useState();
     const [addQuantity , setAddQuantity]=useState(0)
@@ -14,8 +13,7 @@ export const ProductDetails=()=> {
     const params = QueryString.parse(useLocation().search);
     const dispatch= useDispatch();
     const history = useHistory();
-
-        const {products, productsQty} = useSelector(state=>state.ProductReducer);
+    const {products, productsQty} = useSelector(state=>state.ProductReducer);
     const handleAddToCart=()=>{
         dispatch({type:"ADD_PRODUCT", item:productsQty+1})
     }
@@ -25,20 +23,18 @@ export const ProductDetails=()=> {
         
     },[params.productId, products])
     return (
-        <>
-           
+      <>
             {selectedProduct && selectedProduct.map(item=>(
                      <React.Fragment>
                           <Header/>
-                         <div className="Details-content">
+                     <div className="Details-content">
                          <img src={item.image}className="Product-image" />
-                         
                          <div className="Description">
                              <h2>{item.name}</h2>
                              <p>{item.desc}</p>
                              <p><small>&#8377;</small>
                               <strong>{item.price}</strong>
-                              </p>
+                             </p>
                               <div className="quantity">
                               <p>
                                   <button onClick={Substracting}>-</button>
@@ -46,18 +42,13 @@ export const ProductDetails=()=> {
                                   <button onClick={adding}>+</button>
                               </p>
                               </div>
-                              <Button variant="dark" onClick={handleAddToCart}>Add to Cart</Button><p>
-
-                              </p>
+                              <Button variant="dark" onClick={handleAddToCart}>Add to Cart</Button><p></p>
                               <Button variant="dark" onClick={e=>history.push('/')}>Back To Home</Button>
                          </div>
-                      
                       </div>
                       </React.Fragment>
                  )
-                 )}
-         
-                 
+                 )}  
         </>
     )
 }

@@ -118,7 +118,6 @@ products :[{
 }],
 productsQty:0,
 }
-
 const ProductReducer = (state= initialState,action)=>{
     switch (action.type){
         case "SET_PRODUCT":

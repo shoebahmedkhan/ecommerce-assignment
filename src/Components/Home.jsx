@@ -7,19 +7,15 @@ import { ProductList } from "./ProductList";
 export const Home = ()=>{
     const [products,setProducts]=useState();
     const selector = useSelector(getAllProduct);
-    
-  const {productsQty} = useSelector(state=>state.ProductReducer);
     useEffect(()=>{
         setProducts(selector)
     },[selector])
-   
-    return(
+     return(
         <div>
          <Header/>
          {products && products.map((items)=>(
              <ProductList currentitem={items}/>
          ))}
-         
         </div>
     );
 }
